@@ -66,10 +66,12 @@
         
         <input type="radio" class="btn-check" name="options-base" id="option11" autocomplete="off">
         <label class="btn" for="option11">-</label>
+
+        <input type="hidden" value="-" id="ertek" name="ertek" required>
         
         <br>
         <br>
-        <button type="submit">Jegy rögzítése</button>
+        <button type="submit" onclick="radio()">Jegy rögzítése</button>
     </form>
     <form action="/users" method="post" class="hide" id="diakForm">
         <hr>
