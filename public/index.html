@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elektronikus Ellenőrzőkönyv</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Elektronikus Ellenőrzőkönyv</h1>
+    
+    <form action="/jegyek" method="post" class="hide" id="form">
+        <label for="tema">Értékelés témája:</label>
+        <input type="text" id="tema" name="tema">
+        
+        <label for="tipus">Értékelés típusa:</label>
+        <select name="tipus" id="tipus" required>
+            <option value="">Kérem válasszon!</option>
+            <option value="Írásbeli Felelet">Írásbeli Felelet</option>
+            <option value="Szóbeli Felelet">Szóbeli Felelet</option>
+            <option value="Írásbeli Röpdolgozat">Írásbeli Röpdolgozat</option>
+            <option value="Írásbeli Témazáró Dolgozat">Írásbeli Témazáró Dolgozat</option>
+            <option value="Füzetvezetés">Füzetvezetés</option>
+        </select>
+
+        <label for="diak">Diák:</label>
+        <select name="diak" id="diak" required>
+            <option value="">Kérem válasszon!</option>
+            <option value="baloghtataisara20140121">Balogh-Tatai Sára (2014.01.21.)</option>
+            <option value="baloghtataihanna20160629">Balogh-Tatai Hanna (2016.06.29.)</option>
+        </select>
+        
+        <input type="hidden" value="Balogh-Tatai Levente" id="tanar" name="tanar" required>
+        
+        <label for="targy">Tantárgy:</label>
+        <select name="targy" id="targy" required>
+            <option value="">Kérem válasszon!</option>
+            <option value="magyar">Magyar</option>
+            <option value="matematika">Matematika</option>
+            <option value="angol">Angol</option>
+            <option value="term">Természetismeret</option>
+            <option value="ének">Ének-Zene</option>
+            <option value="digi">Digitális Kultúra</option>
+        </select>
+        
+        <label for="datum">Értékelés dátuma:</label>
+        <input type="date" id="datum" name="datum" required>
+
+        <label for="ertek">Értékelés:</label>
+        <input type="number" id="ertek" name="ertek" required>
+
+        <button type="submit">Jegy rögzítése</button>
+    </form>
+    <form action="/users" method="post" class="hide" id="diakForm">
+        <hr>
+        <h3>Diák hozzáadása</h1>
+        <label for="nev">Diák neve:</label>
+        <input type="text" id="nev" name="nev">
+
+        <label for="szdatum">Születési dátuma:</label>
+        <input type="date" id="szdatum" name="szdatum" required>
+
+        <label for="azonosito">Diák azonosítója:</label>
+        <input type="text" id="azonosito" name="azonosito">
+
+        <button type="submit">Diák hozzáadása</button>
+    </form>
+    <hr>
+    <label for="diakid">Azonosító:</label>
+    <input type="text" id="diakid" name="diakid">
+    <button onclick="login()" type="submit">Bejelentkezés</button>
+
+    <div class="tables hide" id="tables">
+        <h2>Matematika Értékelések</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Téma</th>
+                <th>Típus</th>
+                <th>Tanár</th>
+                <th>Érték</th>
+            </tr>
+            </thead>
+            <tbody id="matek">
+            <!-- Table rows will be added dynamically here -->
+            </tbody>
+        </table>
+        <h2>Magyar Értékelések</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Téma</th>
+                <th>Típus</th>
+                <th>Tanár</th>
+                <th>Érték</th>
+            </tr>
+            </thead>
+            <tbody id="magyar">
+            <!-- Table rows will be added dynamically here -->
+            </tbody>
+        </table>
+        <h2>Angol Értékelések</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Téma</th>
+                <th>Típus</th>
+                <th>Tanár</th>
+                <th>Érték</th>
+            </tr>
+            </thead>
+            <tbody id="angol">
+            <!-- Table rows will be added dynamically here -->
+            </tbody>
+        </table>
+        <h2>Természetismeret Értékelések</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Téma</th>
+                <th>Típus</th>
+                <th>Tanár</th>
+                <th>Érték</th>
+            </tr>
+            </thead>
+            <tbody id="term">
+            <!-- Table rows will be added dynamically here -->
+            </tbody>
+        </table>
+        <h2>Vizuális Kultúra Értékelések</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Téma</th>
+                <th>Típus</th>
+                <th>Tanár</th>
+                <th>Érték</th>
+            </tr>
+            </thead>
+            <tbody id="rajz">
+            <!-- Table rows will be added dynamically here -->
+            </tbody>
+        </table>
+        <h2>Ének-Zene Értékelések</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Téma</th>
+                <th>Típus</th>
+                <th>Tanár</th>
+                <th>Érték</th>
+            </tr>
+            </thead>
+            <tbody id="ének">
+            <!-- Table rows will be added dynamically here -->
+            </tbody>
+        </table>
+        <h2>Digitális Kultúra Értékelések</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Téma</th>
+                <th>Típus</th>
+                <th>Tanár</th>
+                <th>Érték</th>
+            </tr>
+            </thead>
+            <tbody id="digi">
+            <!-- Table rows will be added dynamically here -->
+            </tbody>
+        </table>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
