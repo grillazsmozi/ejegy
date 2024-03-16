@@ -82,6 +82,6 @@ app.post('/users', async (req, res) => {
     }
 })
 
-app.listen(port, hostname, () => {
-    console.log(`App listening at http://${hostname}:${port}`);
+app.listen(port, function(err){
+    console.log(`App listening at ${port}`);
 });
