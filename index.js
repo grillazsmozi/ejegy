@@ -82,6 +82,16 @@ app.post('/users', async (req, res) => {
     }
 })
 
+app.get('/users', async (req, res) => {
+    try {
+        const diakok = await Diak.find()
+        res.json(diakok)
+    } catch (error) {
+        console.log(error)
+        res.status(500).send('Internal Server Error')
+    }
+})
+
 app.listen(port, function(err){
     console.log(`App listening at ${port}`);
 });

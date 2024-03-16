@@ -120,11 +120,37 @@ function getJegyek() {
                             cellTanar.textContent = jegy.tanar;
                             cellErtek.textContent = jegy.ertek;
                         }
-                    } else if (sessionStorage.getItem('diakid') === "tanar") {
+                    } else if (sessionStorage.getItem('diakid') === "baloghtatailevente" || sessionStorage.getItem('diakid') === "baloghtataisara") {
                         tables.classList.add('hide')
                         diakForm.classList.remove('hide')
                         form.classList.remove('hide')
+                        document.getElementById('tanar').value = sessionStorage.getItem('diakid')
+                        const dateInput = document.getElementsByName('datum');
+                        const currentDate = new Date();
+                        const formattedDate = currentDate.getFullYear() + '-' +
+                                            ('0' + (currentDate.getMonth() + 1)).slice(-2) + '-' +
+                                            ('0' + currentDate.getDate()).slice(-2);
+                        dateInput.value = formattedDate;
                     }
+                });
+            })
+            .catch(error => console.error('Fetch Error:', error))
+
+            fetch('/users')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`Network response was not ok, status: ${response.status}`)
+                }
+                return response.json()
+            })
+            .then(users => {
+                const select = document.getElementById('diak')
+
+                users.forEach(user => {
+                    var option = document.createElement('option')
+                    option.text = `${user.nev} (${user.azonosito})`
+                    option.value = user.azonosito
+                    select.add(option)
                 });
             })
             .catch(error => console.error('Fetch Error:', error))
