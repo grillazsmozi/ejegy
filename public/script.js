@@ -20,7 +20,7 @@ function getJegyek() {
                 const diakForm = document.getElementById('diakForm');
                 console.log('Variables!')
 
-                const diakid = localStorage.getItem('diakid')
+                const diakid = sessionStorage.getItem('diakid')
                 console.log(`Got diakid! ${diakid}`)
 
                 jegyek.forEach(jegy => {
@@ -120,7 +120,7 @@ function getJegyek() {
                             cellTanar.textContent = jegy.tanar;
                             cellErtek.textContent = jegy.ertek;
                         }
-                    } else if (localStorage.getItem('diakid') === "tanar") {
+                    } else if (sessionStorage.getItem('diakid') === "tanar") {
                         tables.classList.add('hide')
                         diakForm.classList.remove('hide')
                         form.classList.remove('hide')
@@ -138,7 +138,7 @@ function getJegyek() {
 function login() {
     let loginvalue = document.getElementById('diakid').value
 
-    localStorage.setItem('diakid', loginvalue)
+    sessionStorage.setItem('diakid', loginvalue)
     console.log(loginvalue)
     getJegyek()
     location.reload()
