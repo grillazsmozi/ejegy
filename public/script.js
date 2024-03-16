@@ -1,3 +1,37 @@
+const one = document.getElementById('option5')
+const two = document.getElementById('option6')
+const three = document.getElementById('option8')
+const four = document.getElementById('option9')
+const five = document.getElementById('option10')
+const x = document.getElementById('option11')
+const inputv = document.getElementById('ertek')
+
+function radio() {
+    if (one.checked) {
+        inputv.value = "1"
+    }
+
+    if (two.checked) {
+        inputv.value = "2"
+    }
+
+    if (three.checked) {
+        inputv.value = "3"
+    }
+
+    if (four.checked) {
+        inputv.value = "4"
+    }
+
+    if (five.checked) {
+        inputv.value = "5"
+    }
+
+    if (x.checked) {
+        inputv.value = "-"
+    }
+}
+
 function getJegyek() {
     try {
         fetch('/jegyek')
@@ -125,12 +159,6 @@ function getJegyek() {
                         diakForm.classList.remove('hide')
                         form.classList.remove('hide')
                         document.getElementById('tanar').value = sessionStorage.getItem('diakid')
-                        const dateInput = document.getElementsByName('datum');
-                        const currentDate = new Date();
-                        const formattedDate = currentDate.getFullYear() + '-' +
-                                            ('0' + (currentDate.getMonth() + 1)).slice(-2) + '-' +
-                                            ('0' + currentDate.getDate()).slice(-2);
-                        dateInput.value = formattedDate;
                     }
                 });
             })
@@ -171,37 +199,3 @@ function login() {
 }
 
 getJegyek()
-
-const one = document.getElementById('option5')
-const two = document.getElementById('option6')
-const three = document.getElementById('option8')
-const four = document.getElementById('option9')
-const five = document.getElementById('option10')
-const x = document.getElementById('option11')
-const inputv = document.getElementById('ertek')
-
-function radio() {
-    if (one.checked) {
-        inputv.value = "1"
-    }
-
-    if (two.checked) {
-        inputv.value = "2"
-    }
-
-    if (three.checked) {
-        inputv.value = "3"
-    }
-
-    if (four.checked) {
-        inputv.value = "4"
-    }
-
-    if (five.checked) {
-        inputv.value = "5"
-    }
-
-    if (x.checked) {
-        inputv.value = "-"
-    }
-}
