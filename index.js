@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+let locked = true
 
 const hostname = '192.168.1.115'
 
@@ -42,7 +43,11 @@ app.use(express.static('public'));
 
 // Belépő oldal
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/public/index.html');
+    if (locked) {
+        res.sendFile(__dirname + '/public/locked.html');
+    } else {
+        res.sendFile(__dirname + '/public/index.html')
+    }
 });
 
 // Jegyek listázása
@@ -54,6 +59,12 @@ app.get('/jegyek', async (req, res) => {
         console.error(error);
         res.status(500).send('Internal Server Error');
     }
+});
+
+app.post('/toggleLock', (req, res) => {
+    locked = !locked; // Toggle the locked status
+    res.send({ locked }); // Respond with the updated locked status
+    console.log(locked)
 });
 
 // Jegy írása
