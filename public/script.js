@@ -1,3 +1,5 @@
+// debug this code
+
 const one = document.getElementById('option5')
 const two = document.getElementById('option6')
 const three = document.getElementById('option8')
@@ -33,15 +35,21 @@ function radio() {
 }
 
 function getJegyek() {
+    console.log('getJegyek() called')
     try {
+        console.log('try called')
         fetch('/jegyek')
+            console.log('fetching')
             .then(response => {
+                console.log('Response .then')
                 if (!response.ok) {
                     throw new Error(`Network response was not ok, status: ${response.status}`)
                 }
                 return response.json()
             })
+            console.log("Next then")
             .then(jegyek => {
+                console.log('Tables')
                 const matek = document.getElementById('matek');
                 const magyar = document.getElementById('magyar');
                 const angol = document.getElementById('angol');
@@ -59,7 +67,7 @@ function getJegyek() {
 
                 jegyek.forEach(jegy => {
                     console.log('Scanning!')
-                    if (jegy.diak === diakid && diakid !== "tanar") {
+                    if (jegy.diak === diakid && diakid !== "baloghtatailevente" && diakid !== "baloghtataisara") {
                         console.log('Passed diakid and tanar!')
                         tables.classList.remove('hide')
                         diakForm.classList.add('hide')
@@ -195,7 +203,7 @@ function login() {
     sessionStorage.setItem('diakid', loginvalue)
     console.log(loginvalue)
     getJegyek()
-    location.reload()
+    //location.reload()
 }
 
 getJegyek()

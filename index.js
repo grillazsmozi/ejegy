@@ -34,7 +34,7 @@ const diakSchema = new mongoose.Schema({
 })
 
 const Jegy = mongoose.model('Jegy', jegySchema);
-const Diak = mongoose.model('DiakAzonosito', diakSchema)
+const Diak = mongoose.model('Diak', diakSchema)
 
 // Middleware-ek beállítása
 app.use(bodyParser.urlencoded({ extended: true }));
